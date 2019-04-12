@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "953741140751",
+    "firebase_url": "https://healthpal-7433d.firebaseio.com",
+    "project_id": "healthpal-7433d",
+    "storage_bucket": "healthpal-7433d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953741140751:android:ca702252c7717d2b",
+        "android_client_info": {
+          "package_name": "com.example.healthpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953741140751-1o14hqm6l2o1eeu02j347015edhjf1a8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoixaiRCeU7qOt5UXEyVspX7bNokImyKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953741140751-1o14hqm6l2o1eeu02j347015edhjf1a8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
