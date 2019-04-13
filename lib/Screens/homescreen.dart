@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:healthpal/main.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 int show1 = 0;
 int show2 = 0;
