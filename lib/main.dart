@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthpal/Screens/add_pills.dart';
+import 'package:healthpal/Screens/camera_upload.dart';
 import 'package:healthpal/Screens/homescreen.dart';
 import 'package:healthpal/Screens/profile_screen.dart';
 import 'package:healthpal/Screens/treatment_history.dart';
@@ -18,13 +19,14 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: EntryScreen(),
+      home: CameraUpload(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
         '/pills':(context) => PillsScreen(),
         '/addFood': (context) => Meal(),
         '/homescreen': (context) => HomeScreen(),
+        '/camera_upload':(context) => CameraUpload(),
         '/register': (context) => Register()
       }
     );
