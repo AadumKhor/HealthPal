@@ -4,7 +4,7 @@ import 'package:healthpal/Screens/homescreen.dart';
 import 'package:healthpal/Screens/profile_screen.dart';
 import 'package:healthpal/Screens/treatment_history.dart';
 import 'package:healthpal/Screens/calorie.dart';
-import 'package:healthpal/Screens/homescreen.dart';
+import 'package:healthpal/Screens/splash.dart';
 
 Color color = Color(0xff1d4ec7);
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: HomeScreen(),
+      home: EntryScreen(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
