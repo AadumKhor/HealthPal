@@ -30,7 +30,11 @@ dependencies:
   firebase_database: ^2.0.3
   cloud_firestore: 
   firebase_auth:
-  url_launcher: ^5.0.2
+  url_launcher: ^5.0.2 
+  image_picker: ^0.5.3+1
+  firebase_ml_vision:
+  firebase_storage: ^2.1.0+1
+  http:
 
 
 dev_dependencies:
