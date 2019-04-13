@@ -41,16 +41,15 @@ class _TreatmentState extends State<Treatment> {
             SizedBox(
               height: 10.0,
             ),
-            //add graph
-            // the graph and before graph stage
-            // Row(children: <Widget>[
-            //   Text('Stage of Life'),
-            //   DropdownButton(items: <DropdownMenuItem>[],
-
-            //   )
-            // ],)
             Container(
-              height: 300.0,
+              height: 200.0,
+              width: double.maxFinite,
+              child: Stack(
+                children: <Widget>[
+                  Image.asset('assets/images/graph.png'),
+                  
+                ],
+              ),
             ),
             Column(
               children: <Widget>[
