@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:healthpal/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'register.dart';
 
 int show1 = 0;
 int show2 = 0;
@@ -28,14 +29,21 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget content1() {
     if (show1 == 1) {
-      return RaisedButton(
-        child: Text(
-          'Add diet',
-          style: TextStyle(fontFamily: 'Montserrat'),
-        ),
-        onPressed: () {
-          Navigator.pushNamed(context, '/calorie');
-        },
+      return Stack(
+        children: <Widget>[
+          Positioned(
+            top: 210,
+            right: 20,
+              child: GestureDetector(
+            child: Text(
+              'Add diet',
+              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/calorie');
+            },
+          ))
+        ],
       );
     } else
       return SizedBox(height: 0);
@@ -43,11 +51,21 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget content2() {
     if (show2 == 1) {
-      return RaisedButton(
-        child: Text('Upload'),
-        onPressed: () {
-          Navigator.pushNamed(context, '/camera');
-        },
+      return Stack(
+        children: <Widget>[
+          Positioned(
+            top: 210,
+            right: 20,
+              child: GestureDetector(
+            child: Text(
+              'Prescription',
+              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/camera');
+            },
+          ))
+        ],
       );
     } else
       return SizedBox(height: 1);
@@ -55,11 +73,21 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget content3() {
     if (show3 == 1) {
-      return RaisedButton(
-        child: Text('Add diet'),
-        onPressed: () {
-          Navigator.pushNamed(context, '/calorie');
-        },
+      return Stack(
+        children: <Widget>[
+          Positioned(
+            top: 210,
+            right: 20,
+              child: GestureDetector(
+            child: Text(
+              'Add diet',
+              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/calorie');
+            },
+          ))
+        ],
       );
     }
     return SizedBox(height: 1);
@@ -79,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen>
           Container(
             decoration: BoxDecoration(
                 gradient: RadialGradient(
-                    colors: [color, Colors.white],
+                    colors: [Colors.blue[900],Colors.white],
                     center: Alignment(1, -3),
                     radius: 2)),
             height: 200,
@@ -98,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen>
                     top: 100,
                     left: 20,
                     child: GestureDetector(
-                      child: Text('Divyansh',
+                      child: Text('$name',
                           style: TextStyle(
                               color: color,
                               fontSize: 50,
@@ -118,12 +146,11 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                      colors: [color, Colors.white],
+                      colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      stops: [0, 10],
                       tileMode: TileMode.clamp)),
-              duration: Duration(seconds: 1),
+              duration: Duration(milliseconds: 1),
               height: height,
               child: Container(
                 child: Stack(
@@ -135,21 +162,34 @@ class _HomeScreenState extends State<HomeScreen>
                       animation: 'Untitled',
                     ),
                     SizedBox(width: 10),
-                    Center(
-                      child: Text('DIET',
-                          style:TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 40,
-                            letterSpacing: 3.0,
-                            color: Colors.white)),
+                    Positioned(
+                      top: 5,
+                      left: 5,
+                      child: GestureDetector(
+                        onTap: () {
+                          height = 250;
+                          show1 = 1;
+                          setState(() {
+                            // isOpen = !isOpen;
+                          });
+                        },
+                        child: Text('DIET',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 40,
+                                letterSpacing: 3.0,
+                                color: Colors.white)),
+                      ),
                     ),
-                    isOpen ? Container(width: 100.0, height: 40.0,color: Colors.white,) : SizedBox(height: 0.0)
+                    content1()
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Card(
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -160,10 +200,9 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                      colors: [color, Colors.white],
+                      colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      stops: [0, 10],
                       tileMode: TileMode.clamp)),
               duration: Duration(seconds: 1),
               height: height,
@@ -176,15 +215,17 @@ class _HomeScreenState extends State<HomeScreen>
                     fit: BoxFit.cover,
                   ),
                   SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      height = 250;
-                      show2 = 1;
-                      setState(() {
-                        // isOpen = !isOpen;
-                      });
-                    },
-                    child: Center(
+                  Positioned(
+                    top: 5,
+                    left: 5,
+                    child: GestureDetector(
+                      onTap: () {
+                        height = 250;
+                        show2 = 1;
+                        setState(() {
+                          // isOpen = !isOpen;
+                        });
+                      },
                       child: Text('UPLOAD',
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
@@ -209,10 +250,10 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                      colors: [color, Colors.white],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      )),
+                    colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  )),
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
@@ -228,18 +269,9 @@ class _HomeScreenState extends State<HomeScreen>
                     Text('ACTIVITY',
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 20,
+                            fontSize: 40,
                             color: Colors.white)),
                     SizedBox(width: 50),
-                    IconButton(
-                      color: Colors.white,
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        height = 250;
-                        show3 = 1;
-                        setState(() {});
-                      },
-                    ),
                     content3()
                   ],
                 ),

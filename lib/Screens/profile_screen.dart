@@ -64,168 +64,174 @@ class _ProfileScreenState extends State<ProfileScreen>
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: Icon(Icons.arrow_back, color: Color(0xFF1D4EC7)),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Color(0xFF1D4EC7),
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
-          // child: Stack(children: <Widget>[
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(children: <Widget>[
-              Container(
-                height: 200.0,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Column(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+            // child: Stack(children: <Widget>[
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200.0,
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          // TODO:add name from data taken from server
-                          'Aayush Malhotra',
-                          style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              // TODO:add name from data taken from server
+                              'Aayush Malhotra',
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text('Add address here',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300)),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            iconWithData(data[0]),
+                            iconWithData(data[0]),
+                          ],
                         ),
-                        Text('Add address here',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300)),
                         SizedBox(
-                          height: 20.0,
+                          width: 50.0,
                         ),
-                        iconWithData(data[0]),
-                        iconWithData(data[0]),
+                        Column(
+                          children: <Widget>[
+                            Container(
+                              width: 60.0,
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            )
+                          ],
+                        )
                       ],
                     ),
-                    SizedBox(
-                      width: 100.0,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          width: 60.0,
-                          height: 60.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  Container(
+                    height: 200.0,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(border: Border.all()),
+                    child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              height: 800.0,
+                              width: MediaQuery.of(context).size.width,
+                              child: Image.asset('assets/images/graph.png',
+                                  fit: BoxFit.fill),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Sparkline(
+                                data: graphData,
+                                lineColor: Colors.blue,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    height: 60.0,
+                    child: TabBar(
+                      controller: _tabController,
+                      tabs: <Widget>[
+                        Tab(
+                          child: Text(
+                            'Chronic Diseases',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            'Medication',
+                            style: TextStyle(color: Colors.black),
                           ),
                         )
                       ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 200.0,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(border: Border.all()),
-                child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          height: 800.0,
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.asset('assets/images/graph.png',
-                              fit: BoxFit.fill),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Sparkline(
-                            data: graphData,
-                            lineColor: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                width: double.maxFinite,
-                height: 60.0,
-                child: TabBar(
-                  controller: _tabController,
-                  tabs: <Widget>[
-                    Tab(
-                      child: Text(
-                        'Chronic Diseases',
-                        style: TextStyle(color: Colors.black),
-                      ),
                     ),
-                    Tab(
-                      child: Text(
-                        'Medication',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    height: 150.0,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: <Widget>[
+                        _diseaseCard('Diabetes', '27/03/16', 'OnGoing'),
+                        _diseaseCard('Ibuprofen', '27/03/16', 'OnGoing')
+                      ],
+                    ),
+                  ),
+                  Align(
+                      alignment: Alignment.bottomCenter,
+                      child: InkWell(
+                        highlightColor: Color(0xFF1D4EC7),
+                        splashColor: Color(0xFF1D4EC7),
+                        borderRadius: BorderRadius.circular(10.0),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/treat_his');
+                        },
+                        child: Container(
+                            height: 50.0,
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: Colors.blue[50],
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 10.0),
+                                  child: Text(
+                                    'Treatment History',
+                                    style: TextStyle(
+                                        color: Color(0xFF031A98),
+                                        fontSize: 20.0,
+                                        letterSpacing: 2.0),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 90.0,
+                                ),
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Icon(
+                                      Icons.arrow_forward,
+                                      color: Color(0xFF1D4EC7),
+                                    ))
+                              ],
+                            )),
+                      ))
+                ],
               ),
-              Container(
-                width: double.maxFinite,
-                height: 150.0,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: <Widget>[
-                    _diseaseCard('Diabetes', '27/03/16', 'OnGoing'),
-                    _diseaseCard('Ibuprofen', '27/03/16', 'OnGoing')
-                  ],
-                ),
-              ),
-              Align(
-                  alignment: Alignment.bottomCenter,
-                  child: InkWell(
-                    highlightColor: Color(0xFF1D4EC7),
-                    splashColor: Color(0xFF1D4EC7),
-                    borderRadius: BorderRadius.circular(10.0),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/treat_his');
-                    },
-                    child: Container(
-                        height: 50.0,
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.blue[50],
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 10.0),
-                              child: Text(
-                                'Treatment History',
-                                style: TextStyle(
-                                    color: Color(0xFF031A98),
-                                    fontSize: 20.0,
-                                    letterSpacing: 2.0),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 100.0,
-                            ),
-                            Align(
-                                alignment: Alignment.centerRight,
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: Color(0xFF1D4EC7),
-                                ))
-                          ],
-                        )),
-                  ))
-            ],
-          ),
-          )
-          // ]),
-        ));
+            )
+            // ]),
+            ));
   }
 
   // Widget _graph(BuildContext context){
@@ -286,8 +292,13 @@ class _ProfileScreenState extends State<ProfileScreen>
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Icon(Icons.calendar_today ,color: Colors.white,),
-                    SizedBox(width: 10.0,),
+                    Icon(
+                      Icons.calendar_today,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
                     Text(
                       date,
                       style: TextStyle(
@@ -328,7 +339,6 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ),
         ),
-        
       ],
     );
   }

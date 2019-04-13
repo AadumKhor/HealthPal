@@ -36,9 +36,9 @@ class _EntryScreenState extends State<EntryScreen> with SingleTickerProviderStat
                 gradient: new LinearGradient(
                     begin: const FractionalOffset(0.0, 0.0),
                     end: const FractionalOffset(1.0, 1.0),
-                    stops: [0.0, 1.0],
+                    //stops: [0.0, 1.0],
                     tileMode: TileMode.clamp,
-                    colors: [Colors.white, color])),
+                    colors: [Colors.white, Colors.blue[500], Colors.blue[900]])),
             child: Center(
               child: Image(
                 width: 200.0,
