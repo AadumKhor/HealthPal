@@ -25,6 +25,12 @@ dependencies:
   cupertino_icons: ^0.1.2
   charts_flutter: ^0.6.0
   flutter_sparkline: ^0.1.0
+  firebase:
+  firebase_core: 
+  firebase_database: ^2.0.3
+  cloud_firestore: 
+  firebase_auth:
+
 
 dev_dependencies:
   flutter_test:
