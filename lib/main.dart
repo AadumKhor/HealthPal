@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
+      theme: ThemeData(fontFamily: 'Montserrat'),
       home: EntryScreen(),
       routes: {
         '/user':(context) => ProfileScreen(),
