@@ -29,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen>
   Widget content1() {
     if (show1 == 1) {
       return RaisedButton(
-        child: Text('Add diet'),
+        child: Text(
+          'Add diet',
+          style: TextStyle(fontFamily: 'Montserrat'),
+        ),
         onPressed: () {
           Navigator.pushNamed(context, '/calorie');
         },
@@ -92,14 +95,16 @@ class _HomeScreenState extends State<HomeScreen>
                           fontWeight: FontWeight.w500)),
                 ),
                 Positioned(
-                  top: 100,
-                  left: 20,
-                  child: Text('Divyansh',
-                      style: TextStyle(
-                          color: color,
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold)),
-                )
+                    top: 100,
+                    left: 20,
+                    child: GestureDetector(
+                      child: Text('Divyansh',
+                          style: TextStyle(
+                              color: color,
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold)),
+                      onTap: () => Navigator.pushNamed(context, '/user'),
+                    ))
               ],
             ),
           ),
@@ -144,6 +149,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
+          SizedBox(height: 10,),
           Card(
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -152,7 +158,13 @@ class _HomeScreenState extends State<HomeScreen>
             margin: EdgeInsets.only(left: 16, right: 16, top: 8),
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: color),
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                      colors: [color, Colors.white],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [0, 10],
+                      tileMode: TileMode.clamp)),
               duration: Duration(seconds: 1),
               height: height,
               child: Stack(
@@ -186,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
+          SizedBox(height: 10),
           Card(
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -194,7 +207,12 @@ class _HomeScreenState extends State<HomeScreen>
             margin: EdgeInsets.only(left: 16, right: 16, top: 8),
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: color),
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                      colors: [color, Colors.white],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      )),
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
