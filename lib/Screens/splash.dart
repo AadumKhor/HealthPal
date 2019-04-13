@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:healthpal/main.dart';
 
 class EntryScreen extends StatefulWidget {
   _EntryScreenState createState() => _EntryScreenState();
@@ -37,12 +38,12 @@ class _EntryScreenState extends State<EntryScreen> with SingleTickerProviderStat
                     end: const FractionalOffset(1.0, 1.0),
                     stops: [0.0, 1.0],
                     tileMode: TileMode.clamp,
-                    colors: [Color(0xFFE1306C), Color(0xFF833ab4)])),
+                    colors: [Colors.white, color])),
             child: Center(
               child: Image(
                 width: 200.0,
                 height: 200.0,
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/images/hplogo.png'),
               ),
             )),
     );
