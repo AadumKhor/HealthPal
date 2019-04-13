@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:healthpal/main.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 int show1 = 0;
 int show2 = 0;
@@ -158,8 +159,14 @@ class _HomeScreenState extends State<HomeScreen>
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
-                child: Column(
+                child: Stack(
                   children: <Widget>[
+                    FlareActor(
+                      'assets/flare/camera flash.flr',
+                      animation: 'Untitled',
+                      alignment: Alignment.center,
+                      fit: BoxFit.cover,
+                    ),
                     Row(
                       children: <Widget>[
                         SizedBox(width: 10),
