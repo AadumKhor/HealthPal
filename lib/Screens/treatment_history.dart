@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../DAta/personal_data.dart';
+import '../Data/personal_data.dart';
 import 'profile_screen.dart';
 // import 'package:charts_flutter/flutter.dart';
 
