@@ -75,7 +75,18 @@ class _HomeScreenState extends State<HomeScreen>
             margin: EdgeInsets.only(left: 16, right: 16, top: 8),
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: color),
+                  borderRadius: BorderRadius.circular(15), 
+                  gradient: LinearGradient(
+                    colors: [
+                      color,
+                      Colors.white
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    stops: [0, 10],
+                    tileMode: TileMode.clamp
+                  )  
+                ),
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
