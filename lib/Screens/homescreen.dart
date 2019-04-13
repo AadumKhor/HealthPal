@@ -25,6 +25,43 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
     return Scaffold(
       backgroundColor: Colors.white,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AnimatedContainer(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), color: color),
+            duration: Duration(milliseconds: 100),
+            height: height,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('Breakfast',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      SizedBox(width: 50),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          color = Colors.indigo[300];
+                          height = 70;
+                          icon = Icon(Icons.arrow_downward);
+                          show = 0;
+                          setState(() {
+                            show = 1;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  content()
+                ],
+              ),
+            )),
+        ],
+      ),
       floatingActionButton:  new Column(
         mainAxisSize: MainAxisSize.min,
         children: new List.generate(icons.length, (int index) {
@@ -46,7 +83,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 backgroundColor: backgroundColor,
                 mini: true,
                 child: new Icon(icons[index], color: foregroundColor),
-                onPressed: () {},
+                onPressed: () {
+                  if(index == 0){
+                    // launch(urlString); // call the doctor
+                  }
+                  else
+                  {
+                    // launch(urlString) // call ambulance                    
+                  }
+                },
               ),
             ),
           );
