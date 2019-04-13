@@ -3,6 +3,38 @@ import 'package:healthpal/Data/personal_data.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 class ProfileScreen extends StatefulWidget {
+  //   final List<charts.Series> seriesList;
+  // final bool animate;
+
+  // ProfileScreen(this.seriesList, {this.animate});
+
+  // /// Creates a [TimeSeriesChart] with sample data and no transition.
+  // factory ProfileScreen.withSampleData() {
+  //   return new ProfileScreen(
+  //     _createSampleData(),
+  //     // Disable animations for image tests.
+  //     animate: false,
+  //   );
+  // }
+
+  // static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {
+  //   final data = [
+  //     new TimeSeriesSales(new DateTime(2017, 9, 19), 5),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 26), 25),
+  //     new TimeSeriesSales(new DateTime(2017, 10, 3), 100),
+  //     new TimeSeriesSales(new DateTime(2017, 10, 10), 75),
+  //   ];
+
+  //   return [
+  //     new charts.Series<TimeSeriesSales, DateTime>(
+  //       id: 'Sales',
+  //       colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+  //       domainFn: (TimeSeriesSales sales, _) => sales.time,
+  //       measureFn: (TimeSeriesSales sales, _) => sales.sales,
+  //       data: data,
+  //     )
+  //   ];
+  // }
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -12,6 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   TabController _tabController;
   // int index;
   var graphData = [1.0, 2.0, 3.4, 5.4, 6.0, 5.7, 5.9, 4.0, 3.0, 3.1];
+  // var xAxis = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
   List<PersonalData> data = [
     PersonalData(height: 172, weight: 70, blood: 'O+', age: 19),
     // add more items and take data from server
@@ -36,9 +69,9 @@ class _ProfileScreenState extends State<ProfileScreen>
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
           // child: Stack(children: <Widget>[
-          child: ListView(
+          child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            children: <Widget>[
+            child: Column(children: <Widget>[
               Container(
                 height: 200.0,
                 width: MediaQuery.of(context).size.width,
@@ -77,8 +110,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                           width: 60.0,
                           height: 60.0,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.0, color: Colors.black)),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
                         )
                       ],
                     )
@@ -90,27 +123,28 @@ class _ProfileScreenState extends State<ProfileScreen>
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(border: Border.all()),
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  // child: Chart(
-                  child: Sparkline(
-                    data: graphData,
-                    lineColor: Colors.lightBlue,
-                    sharpCorners: true,
-                    lineWidth: 3.0,
-                  ),
-                ),
+                    padding: const EdgeInsets.all(15.0),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 800.0,
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.asset('assets/images/graph.png',
+                              fit: BoxFit.fill),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: Sparkline(
+                            data: graphData,
+                            lineColor: Colors.blue,
+                          ),
+                        ),
+                      ],
+                    )),
               ),
-              // ),
               SizedBox(
                 height: 20.0,
               ),
-              // ListView(
-              //   shrinkWrap: true,
-              //   scrollDirection: Axis.horizontal,
-              //   children: <Widget>[
-              //     _diseaseCard('Diabetes', '27/09/16', 'Medication')
-              //   ],
-              // )
               Container(
                 width: double.maxFinite,
                 height: 60.0,
@@ -138,8 +172,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                 child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
-                    _diseaseCard('disease', 'date', 'status'),
-                    _diseaseCard('BC', 'date', 'status')
+                    _diseaseCard('Diabetes', '27/03/16', 'OnGoing'),
+                    _diseaseCard('Ibuprofen', '27/03/16', 'OnGoing')
                   ],
                 ),
               ),
@@ -189,10 +223,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ))
             ],
           ),
-
+          )
           // ]),
         ));
   }
+
+  // Widget _graph(BuildContext context){
+  //   return charts.TimeSeriesChart(
+
+  //   );
+  // }
 
   Widget iconWithData(PersonalData pdata) {
     return Row(
@@ -229,33 +269,75 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   Widget _diseaseCard(String disease, String date, String status) {
-    return Container(
-      height: 70.0,
-      width: 90.0,
-      child: Card(
-        color: Color(0xFF031A98),
-        child: Column(
-          children: <Widget>[
-            Text(
-              date,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w200),
+    return ListView(
+      children: <Widget>[
+        Card(
+          child: Container(
+            height: 200.0,
+            width: 90.0,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                gradient: LinearGradient(colors: [
+                  Colors.blue[400],
+                  Colors.blue[800],
+                  Colors.blue[900]
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.calendar_today ,color: Colors.white,),
+                    SizedBox(width: 10.0,),
+                    Text(
+                      date,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 40.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(disease,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      status,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                )
+              ],
             ),
-            Text(disease,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500)),
-            Text(
-              status,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w300),
-            )
-          ],
+          ),
         ),
-      ),
+        
+      ],
     );
   }
+  // Sample time series data type.
+}
+
+class TimeSeriesSales {
+  final DateTime time;
+  final int sales;
+
+  TimeSeriesSales(this.time, this.sales);
 }

@@ -7,7 +7,7 @@ import 'package:flare_flutter/flare_actor.dart';
 int show1 = 0;
 int show2 = 0;
 int show3 = 0;
-var height = 50.0;
+var height = 200.0;
 Icon icon = Icon(Icons.arrow_downward);
 
 class HomeScreen extends StatefulWidget {
@@ -70,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen>
     Color backgroundColor = Colors.red;
     Color foregroundColor = Colors.white;
 
+    bool isOpen = false;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -124,29 +126,24 @@ class _HomeScreenState extends State<HomeScreen>
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
-                child: Column(
+                child: Stack(
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        Text('DIET',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Colors.white)),
-                        SizedBox(width: 80),
-                        IconButton(
-                          color: Colors.white,
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            height = 120;
-                            show1 = 1;
-                            setState(() {});
-                          },
-                        ),
-                      ],
+                    FlareActor(
+                      'assets/flare/calorymeter.flr',
+                      alignment: Alignment.center,
+                      fit: BoxFit.cover,
+                      animation: 'Untitled',
                     ),
-                    content1()
+                    SizedBox(width: 10),
+                    Center(
+                      child: Text('DIET',
+                          style:TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 40,
+                            letterSpacing: 3.0,
+                            color: Colors.white)),
+                    ),
+                    isOpen ? Container(width: 100.0, height: 40.0,color: Colors.white,) : SizedBox(height: 0.0)
                   ],
                 ),
               ),
@@ -170,39 +167,34 @@ class _HomeScreenState extends State<HomeScreen>
                       tileMode: TileMode.clamp)),
               duration: Duration(seconds: 1),
               height: height,
-              child: Container(
-                child: Stack(
-                  children: <Widget>[
-                    FlareActor(
-                      'assets/flare/camera flash.flr',
-                      animation: 'Untitled',
-                      alignment: Alignment.center,
-                      fit: BoxFit.cover,
+              child: Stack(
+                children: <Widget>[
+                  FlareActor(
+                    'assets/flare/cameraflash.flr',
+                    animation: 'Untitled',
+                    alignment: Alignment.center,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(width: 10),
+                  GestureDetector(
+                    onTap: () {
+                      height = 250;
+                      show2 = 1;
+                      setState(() {
+                        // isOpen = !isOpen;
+                      });
+                    },
+                    child: Center(
+                      child: Text('UPLOAD',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 40,
+                              letterSpacing: 3.0,
+                              color: Colors.white)),
                     ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        Text('UPLOAD',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Colors.white)),
-                        SizedBox(width: 50),
-                        IconButton(
-                          color: Colors.white,
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            height = 120;
-
-                            show2 = 1;
-                            setState(() {});
-                          },
-                        ),
-                      ],
-                    ),
-                    content2()
-                  ],
-                ),
+                  ),
+                  content2()
+                ],
               ),
             ),
           ),
@@ -224,28 +216,29 @@ class _HomeScreenState extends State<HomeScreen>
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
-                child: Column(
+                child: Stack(
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        Text('ACTIVITY',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                color: Colors.white)),
-                        SizedBox(width: 50),
-                        IconButton(
-                          color: Colors.white,
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            height = 120;
-
-                            show3 = 0;
-                            setState(() {});
-                          },
-                        ),
-                      ],
+                    FlareActor(
+                      'assets/flare/sunriseset.flr',
+                      fit: BoxFit.cover,
+                      animation: 'sunriseset',
+                      alignment: Alignment.center,
+                    ),
+                    SizedBox(width: 10),
+                    Text('ACTIVITY',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: Colors.white)),
+                    SizedBox(width: 50),
+                    IconButton(
+                      color: Colors.white,
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        height = 250;
+                        show3 = 1;
+                        setState(() {});
+                      },
                     ),
                     content3()
                   ],
