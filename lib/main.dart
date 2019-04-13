@@ -3,6 +3,9 @@ import 'package:healthpal/Screens/add_pills.dart';
 import 'package:healthpal/Screens/homescreen.dart';
 import 'package:healthpal/Screens/profile_screen.dart';
 import 'package:healthpal/Screens/treatment_history.dart';
+import 'package:healthpal/Screens/calorie.dart';
+
+Color color = Color(0xff1d4ec7);
 
 void main() => runApp(MyApp());
 
@@ -18,8 +21,7 @@ class MyApp extends StatelessWidget {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
         '/pills':(context) => PillsScreen(),
-        // '/pill_list':(context) => PillListScreen()
-        
+        '/addFood': (context) => Meal()
       }
     );
   }
