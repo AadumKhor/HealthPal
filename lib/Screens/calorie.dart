@@ -107,7 +107,8 @@ class _CalorieState extends State<Calorie> {
                 )
               ],
             ),
-          )
+          ),
+          adbf ? bf() : SizedBox(height: 0),
         ],
       ),
     );
