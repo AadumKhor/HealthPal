@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/services/platform_channel.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'dart:io';
+import 'package:platform/src/interface/platform.dart';
+// import 'package:stream_channel/stream_channel.dart';
 
 class PillsScreen extends StatefulWidget {
   @override
@@ -9,6 +14,13 @@ class _PillsScreenState extends State<PillsScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   int pillTimes = 2;
+  int pillCount = 0;
+  int pillDuration = 0;
+
+  TimeOfDay _time = TimeOfDay(hour: 9, minute: 0);
+
+  bool isTimeSet1 = false;
+  bool isTimeSet2 = false;
 
   @override
   void initState() {
@@ -16,6 +28,42 @@ class _PillsScreenState extends State<PillsScreen>
     super.initState();
   }
 
+  Future getNotification() async {
+    var time = new Time(10, 0, 0);
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+        'repeatDailyAtTime channel id',
+        'repeatDailyAtTime channel name',
+        'repeatDailyAtTime description');
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    MethodChannel channel = new MethodChannel('Notifs');
+    Platform platform;
+
+    var notif = FlutterLocalNotificationsPlugin.private(channel, platform);
+    await notif.showDailyAtTime(
+        0, 'Reminder', 'Medicine Time!', time, platformChannelSpecifics);
+  }
+
+  Future<Null> setTime(BuildContext context) async {
+    TimeOfDay time = await showTimePicker(
+      context: context,
+      initialTime: _time,
+    );
+
+    if (time != null && time != _time) {
+      setState(() {
+        _time = time;
+        if (_tabController.index == 0) {
+          isTimeSet1 = true;
+          // isTimeSet2 = false;
+        } else if (_tabController.index == 1) {
+          isTimeSet2 = true;
+          // isTimeSet1 = false;
+        }
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +104,7 @@ class _PillsScreenState extends State<PillsScreen>
                 height: 20.0,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     'Add number',
@@ -74,17 +123,68 @@ class _PillsScreenState extends State<PillsScreen>
                 height: 10.0,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     width: 150.0,
                     height: 50.0,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Number', border: InputBorder.none),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 50.0,
+                          height: 50.0,
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                               pillCount = pillCount -1; 
+                              });
+                            },
+                              child: Icon(Icons.exposure_neg_1,
+                                  color: Colors.white)),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                Colors.blue[400],
+                                Colors.blue[600],
+                                Colors.blue[900]
+                              ])),
+                        ),
+                        Text(
+                          pillCount.toString(),
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Container(
+                          width: 50.0,
+                          height: 50.0,
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                               pillCount = pillCount +1; 
+                              });
+                            },
+                              child: Icon(Icons.plus_one,
+                                  color: Colors.white)),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                Colors.blue[400],
+                                Colors.blue[600],
+                                Colors.blue[900]
+                              ])),
+                        ),
+                      ],
                     ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        border: Border.all(color: Color(0xFF1D4EC7))),
                   ),
                   SizedBox(
                     width: 80.0,
@@ -92,13 +192,63 @@ class _PillsScreenState extends State<PillsScreen>
                   Container(
                     width: 150.0,
                     height: 50.0,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Duration', border: InputBorder.none),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 50.0,
+                          height: 50.0,
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                               pillDuration = pillDuration -1; 
+                              });
+                            },
+                              child: Icon(Icons.exposure_neg_1,
+                                  color: Colors.white)),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                Colors.blue[400],
+                                Colors.blue[600],
+                                Colors.blue[900]
+                              ])),
+                        ),
+                        Text(
+                          pillDuration.toString(),
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Container(
+                          width: 50.0,
+                          height: 50.0,
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                               pillDuration = pillDuration +1; 
+                              });
+                            },
+                              child: Icon(Icons.plus_one,
+                                  color: Colors.white)),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                Colors.blue[400],
+                                Colors.blue[600],
+                                Colors.blue[900]
+                              ])),
+                        ),
+                      ],
                     ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        border: Border.all(color: Color(0xFF1D4EC7))),
                   ),
                 ],
               ),
@@ -199,14 +349,36 @@ class _PillsScreenState extends State<PillsScreen>
               Container(
                 width: double.maxFinite,
                 height: 100.0,
-                decoration: BoxDecoration(
-                  color: Colors.lightBlueAccent
-                ),
+                decoration: BoxDecoration(color: Colors.lightBlueAccent),
                 child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
-                    Text('Time'),
-
+                    !isTimeSet1
+                        ? RaisedButton(
+                            onPressed: () {
+                              setTime(context);
+                            },
+                          )
+                        : Center(
+                            child: Text(
+                              _time.toString(),
+                              style: TextStyle(
+                                  fontSize: 30.0, color: Colors.black),
+                            ),
+                          ),
+                    !isTimeSet2
+                        ? RaisedButton(
+                            onPressed: () {
+                              setTime(context);
+                            },
+                          )
+                        : Center(
+                            child: Text(
+                              _time.toString(),
+                              style: TextStyle(
+                                  fontSize: 30.0, color: Colors.black),
+                            ),
+                          )
                   ],
                 ),
               ),
@@ -215,13 +387,13 @@ class _PillsScreenState extends State<PillsScreen>
                   width: 100.0,
                   height: 40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.blue
-                  ),
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.blue),
                   child: FlatButton(
                     child: Text('Add'),
-                    onPressed: (){
-                      Navigator.pushNamed(context, '/pill_list');
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/loader');
+                      getNotification();
                     },
                   ),
                 ),
