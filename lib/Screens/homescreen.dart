@@ -13,6 +13,23 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       //TODO; add our logo here
       //TODO: put animated container screen here
+      body: Stack(
+        children: <Widget>[
+          Positioned(
+            bottom: 10.0,
+            right: 10.0,
+            child: Container(
+              width: 50.0,
+              height: 50.0,
+              child: Icon(Icons.access_alarms),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.red
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
