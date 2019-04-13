@@ -38,6 +38,70 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 children: <Widget>[
                   Row(
                     children: <Widget>[
+                      Text('Camera',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      SizedBox(width: 50),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          color = Colors.indigo[300];
+                          height = 70;
+                          icon = Icon(Icons.arrow_downward);
+                          show = 0;
+                          setState(() {
+                            show = 1;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  content()
+                ],
+              ),
+            )),
+             AnimatedContainer(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), color: color),
+            duration: Duration(milliseconds: 100),
+            height: height,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('Camera',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
+                      SizedBox(width: 50),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          color = Colors.indigo[300];
+                          height = 70;
+                          icon = Icon(Icons.arrow_downward);
+                          show = 0;
+                          setState(() {
+                            show = 1;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  content()
+                ],
+              ),
+            )),
+             AnimatedContainer(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), color: color),
+            duration: Duration(milliseconds: 100),
+            height: height,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
                       Text('Breakfast',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20)),
