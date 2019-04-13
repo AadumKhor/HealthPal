@@ -25,6 +25,42 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
+  Widget content1() {
+    if (show1 == 1) {
+      return RaisedButton(
+        child: Text('Add diet'),
+        onPressed: () {
+          Navigator.pushNamed(context, '/calorie');
+        },
+      );
+    } else
+      return SizedBox(height: 0);
+  }
+
+  Widget content2() {
+    if (show2 == 1) {
+      return RaisedButton(
+        child: Text('Upload'),
+        onPressed: () {
+          Navigator.pushNamed(context, '/camera');
+        },
+      );
+    } else
+      return SizedBox(height: 1);
+  }
+
+  Widget content3() {
+    if (show3 == 1) {
+      return RaisedButton(
+        child: Text('Add diet'),
+        onPressed: () {
+          Navigator.pushNamed(context, '/calorie');
+        },
+      );
+    }
+    return SizedBox(height: 1);
+  }
+
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = Colors.red;
@@ -36,33 +72,30 @@ class _HomeScreenState extends State<HomeScreen>
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [
-                  color,
-                  Colors.white
-                ],
-                center: Alignment(1, -3),
-                radius: 2
-              )
-            ),
+                gradient: RadialGradient(
+                    colors: [color, Colors.white],
+                    center: Alignment(1, -3),
+                    radius: 2)),
             height: 200,
             child: Stack(
               children: <Widget>[
                 Positioned(
                   top: 60,
                   left: 20,
-                  child: Text(
-                    'Hello',
-                    style: TextStyle(color: color, fontSize: 30, fontWeight: FontWeight.w500)
-                  ),
+                  child: Text('Hello',
+                      style: TextStyle(
+                          color: color,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500)),
                 ),
                 Positioned(
                   top: 100,
                   left: 20,
-                  child: Text(
-                    'Divyansh',
-                    style: TextStyle(color: color, fontSize: 50, fontWeight: FontWeight.bold)
-                  ),
+                  child: Text('Divyansh',
+                      style: TextStyle(
+                          color: color,
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold)),
                 )
               ],
             ),
@@ -75,18 +108,13 @@ class _HomeScreenState extends State<HomeScreen>
             margin: EdgeInsets.only(left: 16, right: 16, top: 8),
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), 
+                  borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                    colors: [
-                      color,
-                      Colors.white
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [0, 10],
-                    tileMode: TileMode.clamp
-                  )  
-                ),
+                      colors: [color, Colors.white],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [0, 10],
+                      tileMode: TileMode.clamp)),
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
@@ -261,31 +289,4 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
   }
-}
-
-Widget content1() {
-  if (show1 == 1) {
-    return TextField(
-      decoration: InputDecoration(hintText: 'Enter food item'),
-    );
-  }
-  else return SizedBox(height: 0);
-}
-
-Widget content2() {
-  if (show2 == 1) {
-    return TextField(
-      decoration: InputDecoration(hintText: 'Enter food item'),
-    );
-  }
-  return SizedBox(height: 1);
-}
-
-Widget content3() {
-  if (show3 == 1) {
-    return TextField(
-      decoration: InputDecoration(hintText: 'Enter food item'),
-    );
-  }
-  return SizedBox(height: 1);
 }
