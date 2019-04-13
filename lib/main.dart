@@ -7,6 +7,7 @@ import 'package:healthpal/Screens/treatment_history.dart';
 import 'package:healthpal/Screens/calorie.dart';
 import 'package:healthpal/Screens/splash.dart';
 import 'package:healthpal/Screens/register.dart';
+import 'package:healthpal/Screens/camera_upload.dart';
 
 Color color = Color(0xff1d4ec7);
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: ProfileScreen(),
+      home: EntryScreen(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
         '/addFood': (context) => Meal(),
         '/homescreen': (context) => HomeScreen(),
         '/camera_upload':(context) => CameraUpload(),
-        '/register': (context) => Register()
+        '/register': (context) => Register(),
+        '/calorie': (context) => Calorie(),
+        '/camera': (context) => CameraUpload()
       }
     );
   }
