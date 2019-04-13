@@ -131,8 +131,14 @@ class _HomeScreenState extends State<HomeScreen>
               duration: Duration(seconds: 1),
               height: height,
               child: Container(
-                child: Column(
+                child: Stack(
                   children: <Widget>[
+                    FlareActor(
+                      'assets/flare/camera flash.flr',
+                      animation: 'Untitled',
+                      alignment: Alignment.center,
+                      fit: BoxFit.cover,
+                    ),
                     Row(
                       children: <Widget>[
                         SizedBox(width: 10),

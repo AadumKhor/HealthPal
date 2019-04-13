@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: CameraUpload(),
+      home: HomeScreen(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
