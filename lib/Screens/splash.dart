@@ -15,7 +15,7 @@ class _EntryScreenState extends State<EntryScreen> with SingleTickerProviderStat
     super.initState();
     fadeAnimationController = new AnimationController(vsync: this , duration: Duration(seconds: 2));
     fadeAnimation = new CurvedAnimation(curve: Curves.easeInCirc , parent: fadeAnimationController);
-    Timer(Duration(seconds: 3), ()=> Navigator.pushReplacementNamed(context, '/homescreen'));
+    Timer(Duration(seconds: 3), ()=> Navigator.pushReplacementNamed(context, '/register'));
   }
   @override
   void dispose() {
