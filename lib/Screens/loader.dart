@@ -17,7 +17,7 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin{
   void initState() {
     animationController = new AnimationController(vsync: this , duration: Duration(seconds: 2));
     animation = new CurvedAnimation(parent: animationController , curve: Curves.easeInOut);
-    Timer(duration: Duration(seconds: 4) , );
+    //Timer(duration: Duration(seconds: 4), void callback() );
     super.initState();
   }
 
