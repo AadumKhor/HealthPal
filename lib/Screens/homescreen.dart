@@ -36,17 +36,17 @@ class _HomeScreenState extends State<HomeScreen>
       return Stack(
         children: <Widget>[
           Positioned(
-            top: 210,
-            right: 20,
+              top: 210,
+              right: 20,
               child: GestureDetector(
-            child: Text(
-              'Add diet',
-              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, '/calorie');
-            },
-          ))
+                child: Text(
+                  '- Add intake',
+                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/calorie');
+                },
+              ))
         ],
       );
     } else
@@ -58,17 +58,17 @@ class _HomeScreenState extends State<HomeScreen>
       return Stack(
         children: <Widget>[
           Positioned(
-            top: 210,
-            right: 20,
+              top: 210,
+              right: 20,
               child: GestureDetector(
-            child: Text(
-              'Prescription',
-              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, '/camera');
-            },
-          ))
+                child: Text(
+                  '- Prescription',
+                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/camera');
+                },
+              ))
         ],
       );
     } else
@@ -80,17 +80,17 @@ class _HomeScreenState extends State<HomeScreen>
       return Stack(
         children: <Widget>[
           Positioned(
-            top: 210,
-            right: 20,
+              top: 210,
+              right: 20,
               child: GestureDetector(
-            child: Text(
-              'Add diet',
-              style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, '/calorie');
-            },
-          ))
+                child: Text(
+                  '- Add Pills',
+                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 30),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/pills');
+                },
+              ))
         ],
       );
     }
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen>
           Container(
             decoration: BoxDecoration(
                 gradient: RadialGradient(
-                    colors: [Colors.blue[900],Colors.white],
+                    colors: [Colors.blue[900], Colors.white],
                     center: Alignment(1, -3),
                     radius: 2)),
             height: 200,
@@ -150,7 +150,11 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                      colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
+                      colors: [
+                        Colors.blue[900],
+                        Colors.blue[800],
+                        Colors.blue[500]
+                      ],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       tileMode: TileMode.clamp)),
@@ -204,7 +208,11 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                      colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
+                      colors: [
+                        Colors.blue[900],
+                        Colors.blue[800],
+                        Colors.blue[500]
+                      ],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       tileMode: TileMode.clamp)),
@@ -254,7 +262,11 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: LinearGradient(
-                    colors: [Colors.blue[900], Colors.blue[800], Colors.blue[500]],
+                    colors: [
+                      Colors.blue[900],
+                      Colors.blue[800],
+                      Colors.blue[500]
+                    ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   )),
@@ -270,11 +282,20 @@ class _HomeScreenState extends State<HomeScreen>
                       alignment: Alignment.center,
                     ),
                     SizedBox(width: 10),
-                    Text('ACTIVITY',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 40,
-                            color: Colors.white)),
+                    GestureDetector(
+                      onTap: () {
+                        height = 250.0;
+                        show3 = 1;
+                        setState(() {
+                          
+                        });
+                      },                      
+                      child: Text('ACTIVITY',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 40,
+                              color: Colors.white)),
+                    ),
                     SizedBox(width: 50),
                     content3()
                   ],
@@ -305,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen>
                 onPressed: () {
                   if (index == 0) {
                     launch("tel://8076793233"); // call the doctor
-                  } else {
+                  } else if (index == 1) {
                     launch("tel://8076793233"); // call ambulance
                   }
                 },
