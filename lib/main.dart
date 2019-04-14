@@ -8,9 +8,9 @@ import 'package:healthpal/Screens/profile_screen.dart';
 import 'package:healthpal/Screens/success.dart';
 import 'package:healthpal/Screens/treatment_history.dart';
 import 'package:healthpal/Screens/calorie.dart';
-// import 'package:healthpal/Screens/splash.dart';
+ import 'package:healthpal/Screens/splash.dart';
 import 'package:healthpal/Screens/register.dart';
-// import 'package:healthpal/Screens/camera_upload.dart';
+ import 'package:healthpal/Screens/camera_upload.dart';
 
 Color color = Color(0xff1d4ec7);
 
