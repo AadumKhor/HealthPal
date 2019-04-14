@@ -89,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           children: <Widget>[
                             Text(
                               // TODO:add name from data taken from server
-                              'Aayush Malhotra',
+                              'Divyansh',
                               style: TextStyle(
                                   fontSize: 30.0,
                                   color: Colors.black,

@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                     top: 100,
                     left: 20,
                     child: GestureDetector(
-                      child: Text('',
+                      child: Text('Divyansh',
                           style: TextStyle(
                               color: color,
                               fontSize: 50,

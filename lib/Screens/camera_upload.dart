@@ -12,7 +12,6 @@ class CameraUpload extends StatefulWidget {
 }
 
 class _CameraUploadState extends State<CameraUpload> {
-
   File file;
   String description = '';
   bool isImageLoaded = false;
@@ -21,46 +20,38 @@ class _CameraUploadState extends State<CameraUpload> {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
-     file = image; 
-     isImageLoaded = true;
+      file = image;
+      isImageLoaded = true;
     });
   }
 
-  Future readText() async{
+  Future readText() async {
     FirebaseVisionImage image = FirebaseVisionImage.fromFile(file);
     TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
 
     VisionText readText = await textRecognizer.processImage(image);
 
-    for(TextBlock block in readText.blocks){
-      for(TextLine line in block.lines){
-        for(TextElement element in line.elements){
-          print(element.text);
+    for (TextBlock block in readText.blocks) {
+      for (TextLine line in block.lines) {
+        for (TextElement element in line.elements) {
+          String finalText = (element.text);
+          print(finalText);
+          Text(finalText);
         }
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.white,
-      body: file==null
-      ? Center(child: Text('No data available'),) : enableUpload(),
-      // : isImageLoaded ?
-      // Container(
-      //   height: 100.0,
-      //   width: double.maxFinite,
-      //   child:Card(
-      //   child: Row(
-      //     children: <Widget>[
-      //       Image.file(file) , 
-      //       SizedBox(width: 20.0,),
-      //       Text(description)
-      //     ],
-      //   ),
-      // )): enableUpload(),
+      body: file == null
+          ? Center(child: Text('No data available'))
+          : enableUpload(),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           getImage();
         },
         elevation: 10.0,
@@ -70,24 +61,21 @@ class _CameraUploadState extends State<CameraUpload> {
     );
   }
 
-   Widget enableUpload() {
+  Widget enableUpload() {
+    Future text = readText();
+    text.asStream();
     return Container(
       child: Column(
         children: <Widget>[
           Image.file(file, height: 300.0, width: 300.0),
-          // TextFormField(
-          //   decoration: new InputDecoration(
-          //     hintText: 'Crop Name'
-          //   ),
-          // ),
           RaisedButton(
             elevation: 7.0,
             child: Row(
               children: <Widget>[
                 new Icon(Icons.keyboard_arrow_right),
                 new Text(
-                  'Upload',
-                  style: new TextStyle(color: Colors.white),
+                  'Analyze Text',
+                  style: new TextStyle(color: Colors.white, letterSpacing: 2.0),
                 ),
               ],
             ),
@@ -108,8 +96,22 @@ class _CameraUploadState extends State<CameraUpload> {
               // final StorageUploadTask task = firebaseStorageRef.putFile(file);
               // Navigator.popAndPushNamed(context, '/camera_upload');
 
-              readText();
+             readText();
             },
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            width: 200.0,
+            height: 200.0,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 2.0),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Center(
+              child: Text(text.toString()),
+            ),
           )
         ],
       ),
