@@ -5,6 +5,7 @@ import 'package:healthpal/Screens/homescreen.dart';
 import 'package:healthpal/Screens/loader.dart';
 import 'package:healthpal/Screens/pill_list_screen.dart';
 import 'package:healthpal/Screens/profile_screen.dart';
+import 'package:healthpal/Screens/success.dart';
 import 'package:healthpal/Screens/treatment_history.dart';
 import 'package:healthpal/Screens/calorie.dart';
 // import 'package:healthpal/Screens/splash.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: HomeScreen(),
+      home: Register(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
@@ -35,8 +36,8 @@ class MyApp extends StatelessWidget {
         '/register': (context) => Register(),
         '/calorie': (context) => Calorie(),
         '/camera': (context) => CameraUpload(),
-        'loader':(context) => Loader(),
-        // 'success':(context) =>SuccessScreen()
+        '/loader':(context) => Loader(),
+        '/success':(context) =>Success()
       }
     );
   }

@@ -20,6 +20,10 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   List<IconData> icons = [Icons.dialpad, Icons.person];
+  Register register;
+
+  // register.
+
   @override
   void initState() {
     _controller = new AnimationController(
@@ -126,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                     top: 100,
                     left: 20,
                     child: GestureDetector(
-                      child: Text('$name',
+                      child: Text('',
                           style: TextStyle(
                               color: color,
                               fontSize: 50,
@@ -300,9 +304,9 @@ class _HomeScreenState extends State<HomeScreen>
                 child: new Icon(icons[index], color: foregroundColor),
                 onPressed: () {
                   if (index == 0) {
-                    // launch(urlString); // call the doctor
+                    launch("tel://8076793233"); // call the doctor
                   } else {
-                    // launch(urlString) // call ambulance
+                    launch("tel://8076793233"); // call ambulance
                   }
                 },
               ),

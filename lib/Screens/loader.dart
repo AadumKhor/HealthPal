@@ -10,25 +10,25 @@ class Loader extends StatefulWidget {
 
 class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin{
 
-  AnimationController animationController;
-  Animation animation;
+  // AnimationController animationController;
+  // Animation animation;
 
   @override
   void initState() {
-    animationController = new AnimationController(vsync: this , duration: Duration(seconds: 2));
-    animation = new CurvedAnimation(parent: animationController , curve: Curves.easeInOut);
-    Timer(duration: Duration(seconds: 4) , );
+    // animationController = new AnimationController(vsync: this , duration: Duration(seconds: 2));
+    // animation = new CurvedAnimation(parent: animationController , curve: Curves.easeInOut);
+    Timer(Duration(seconds: 4) , () => Navigator.pushReplacementNamed(context, '/success'));
     super.initState();
   }
 
   @override
   void dispose() {
-    animationController.dispose();
+    // animationController.dispose();
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    animationController.forward();
+    // animationController.forward();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   var graphData = [1.0, 2.0, 3.4, 5.4, 6.0, 5.7, 5.9, 4.0, 3.0, 3.1];
   // var xAxis = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
   List<PersonalData> data = [
-    PersonalData(height: 172, weight: 70, blood: 'O+', age: 19),
+    PersonalData(height: '172', weight: '70', blood: 'O+', age: '19'),
     // add more items and take data from server
   ];
 
