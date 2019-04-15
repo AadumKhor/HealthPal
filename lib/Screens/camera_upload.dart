@@ -25,7 +25,7 @@ class _CameraUploadState extends State<CameraUpload> {
     });
   }
 
-  Future readText() async {
+  Future<String> readText() async {
     FirebaseVisionImage image = FirebaseVisionImage.fromFile(file);
     TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
 
@@ -36,15 +36,18 @@ class _CameraUploadState extends State<CameraUpload> {
         for (TextElement element in line.elements) {
           String finalText = (element.text);
           print(finalText);
-          Text(finalText);
+          // Text(finalText);
+          description = finalText;
         }
       }
     }
+    return description;
   }
+
+  bool isAnalyzed = false;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.white,
       body: file == null
@@ -62,57 +65,72 @@ class _CameraUploadState extends State<CameraUpload> {
   }
 
   Widget enableUpload() {
-    Future text = readText();
-    text.asStream();
+    // String text = '';
+
+    // text.asStream();
     return Container(
       child: Column(
         children: <Widget>[
           Image.file(file, height: 300.0, width: 300.0),
           RaisedButton(
-            elevation: 7.0,
-            child: Row(
-              children: <Widget>[
-                new Icon(Icons.keyboard_arrow_right),
-                new Text(
-                  'Analyze Text',
-                  style: new TextStyle(color: Colors.white, letterSpacing: 2.0),
-                ),
-              ],
-            ),
-            color: Colors.blue,
-            onPressed: () {
-              // var path = uuid.v1();
-              // var positionData = position.toString();
-              // var url =
-              //     "https://floating-oasis-94041.herokuapp.com/image?lat=100&lon=90&name=hahah&photoUrl";
-              // var client = http.Client();
-              // client.post(url, body: {"name": "doodle"}).then((response) {
-              //   print("Response status: ${response.statusCode}");
-              //   print("Response body: ${response.body}");
-              //   // print("$positionData");
-              // });
-              // final StorageReference firebaseStorageRef =
-              //     FirebaseStorage.instance.ref().child('file.jpg');
-              // final StorageUploadTask task = firebaseStorageRef.putFile(file);
-              // Navigator.popAndPushNamed(context, '/camera_upload');
+              elevation: 7.0,
+              child: Row(
+                children: <Widget>[
+                  new Icon(Icons.keyboard_arrow_right),
+                  new Text(
+                    'Analyze Text',
+                    style:
+                        new TextStyle(color: Colors.white, letterSpacing: 2.0),
+                  ),
+                ],
+              ),
+              color: Colors.blue,
+              onPressed: () {
+                // isAnalyzed = true;
+                // var path = uuid.v1();
+                // var positionData = position.toString();
+                // var url =
+                //     "https://floating-oasis-94041.herokuapp.com/image?lat=100&lon=90&name=hahah&photoUrl";
+                // var client = http.Client();
+                // client.post(url, body: {"name": "doodle"}).then((response) {
+                //   print("Response status: ${response.statusCode}");
+                //   print("Response body: ${response.body}");
+                //   // print("$positionData");
+                // });
+                // final StorageReference firebaseStorageRef =
+                //     FirebaseStorage.instance.ref().child('file.jpg');
+                // final StorageUploadTask task = firebaseStorageRef.putFile(file);
+                // Navigator.popAndPushNamed(context, '/camera_upload');
 
-             readText();
-            },
-          ),
+                readText().then((value){
+                  isAnalyzed = true;
+                  value = description;
+                });
+              }),
           SizedBox(
             height: 20.0,
           ),
-          Container(
-            width: 200.0,
-            height: 200.0,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2.0),
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Center(
-              child: Text(text.toString()),
-            ),
-          )
+          isAnalyzed
+              ? Container(
+                  width: 200.0,
+                  height: 200.0,
+                  color: Colors.red[200],
+                  // decoration: BoxDecoration(
+                  //   border: Border.all(color: Colors.black, width: 2.0),
+                  //   borderRadius: BorderRadius.circular(15.0),
+                  // ),
+                  child: Center(
+                    child: Text(
+                      description,
+                      style: TextStyle(color: Colors.black , fontSize: 20.0),
+                    ),
+                  ),
+                )
+              : Container(
+                  height: 200.0,
+                  width: 200.0,
+                  color: Colors.blue[200],
+                )
         ],
       ),
     );
