@@ -323,7 +323,7 @@ class _HomeScreenState extends State<HomeScreen>
                 backgroundColor: backgroundColor,
                 mini: true,
                 tooltip: index == 0 ? 'Call Ambulance' : 'Call Doctor',
-                child: new Icon(icons[index], color: index == 0 ?),
+                child: new Icon(icons[index], color: index == 0 ? Colors.purple : Colors.pink),
                 onPressed: () {
                   if (index == 0) {
                     launch("tel://8076793233"); // call the doctor
