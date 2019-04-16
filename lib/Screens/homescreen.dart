@@ -318,11 +318,12 @@ class _HomeScreenState extends State<HomeScreen>
                 curve: new Interval(0.0, 1.0 - index / icons.length / 2.0,
                     curve: Curves.easeOut),
               ),
-              child: new FloatingActionButton(
+              child: new FloatingActionButton(                
                 heroTag: null,
                 backgroundColor: backgroundColor,
                 mini: true,
-                child: new Icon(icons[index], color: foregroundColor),
+                tooltip: index == 0 ? 'Call Ambulance' : 'Call Doctor',
+                child: new Icon(icons[index], color: index == 0 ?),
                 onPressed: () {
                   if (index == 0) {
                     launch("tel://8076793233"); // call the doctor
