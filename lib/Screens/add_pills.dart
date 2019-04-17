@@ -22,6 +22,20 @@ class _PillsScreenState extends State<PillsScreen>
   bool isTimeSet1 = false;
   bool isTimeSet2 = false;
 
+  static String capsuleImage = 'assets/images/capsule.png';
+  static String solutionImage = 'assets/images/solution.png';
+  static String tabletImage = 'assets/images/tablet.png';
+
+  static String capsuleSelected = 'assets/images/capsule_selected.png';
+  static String solutionSelected = 'assets/images/solution_selected.png';
+  static String tabletSelected = 'assets/images/tablet_selected.png';
+
+  bool capsule = false;
+  bool solution = false;
+  bool tablet = false;
+
+  String selectedType = '';
+
   @override
   void initState() {
     _tabController = new TabController(vsync: this, length: pillTimes);
@@ -104,7 +118,7 @@ class _PillsScreenState extends State<PillsScreen>
                 height: 20.0,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -126,7 +140,7 @@ class _PillsScreenState extends State<PillsScreen>
                 height: 10.0,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -140,53 +154,52 @@ class _PillsScreenState extends State<PillsScreen>
                             width: 40.0,
                             height: 40.0,
                             child: GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                 pillCount = pillCount -1; 
-                                });
-                              },
+                                onTap: () {
+                                  setState(() {
+                                    pillCount = pillCount - 1;
+                                  });
+                                },
                                 child: Icon(Icons.exposure_neg_1,
                                     color: Colors.white)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(10.0),
                                 gradient: LinearGradient(
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
-                                  Colors.blue[400],
-                                  Colors.blue[600],
-                                  Colors.blue[900]
-                                ])),
+                                      Colors.blue[400],
+                                      Colors.blue[600],
+                                      Colors.blue[900]
+                                    ])),
                           ),
                           Text(
                             pillCount.toString(),
                             style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold
-                            ),
+                                fontSize: 30.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
                           Container(
                             width: 40.0,
                             height: 40.0,
                             child: GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                 pillCount = pillCount +1; 
-                                });
-                              },
-                                child: Icon(Icons.plus_one,
-                                    color: Colors.white)),
+                                onTap: () {
+                                  setState(() {
+                                    pillCount = pillCount + 1;
+                                  });
+                                },
+                                child:
+                                    Icon(Icons.plus_one, color: Colors.white)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(10.0),
                                 gradient: LinearGradient(
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
-                                  Colors.blue[400],
-                                  Colors.blue[600],
-                                  Colors.blue[900]
-                                ])),
+                                      Colors.blue[400],
+                                      Colors.blue[600],
+                                      Colors.blue[900]
+                                    ])),
                           ),
                         ],
                       ),
@@ -204,53 +217,52 @@ class _PillsScreenState extends State<PillsScreen>
                             width: 40.0,
                             height: 40.0,
                             child: GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                 pillDuration = pillDuration -1; 
-                                });
-                              },
+                                onTap: () {
+                                  setState(() {
+                                    pillDuration = pillDuration - 1;
+                                  });
+                                },
                                 child: Icon(Icons.exposure_neg_1,
                                     color: Colors.white)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(10.0),
                                 gradient: LinearGradient(
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
-                                  Colors.blue[400],
-                                  Colors.blue[600],
-                                  Colors.blue[900]
-                                ])),
+                                      Colors.blue[400],
+                                      Colors.blue[600],
+                                      Colors.blue[900]
+                                    ])),
                           ),
                           Text(
                             pillDuration.toString(),
                             style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold
-                            ),
+                                fontSize: 30.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
                           Container(
                             width: 40.0,
                             height: 40.0,
                             child: GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                 pillDuration = pillDuration +1; 
-                                });
-                              },
-                                child: Icon(Icons.plus_one,
-                                    color: Colors.white)),
+                                onTap: () {
+                                  setState(() {
+                                    pillDuration = pillDuration + 1;
+                                  });
+                                },
+                                child:
+                                    Icon(Icons.plus_one, color: Colors.white)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(10.0),
                                 gradient: LinearGradient(
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                     colors: [
-                                  Colors.blue[400],
-                                  Colors.blue[600],
-                                  Colors.blue[900]
-                                ])),
+                                      Colors.blue[400],
+                                      Colors.blue[600],
+                                      Colors.blue[900]
+                                    ])),
                           ),
                         ],
                       ),
@@ -261,76 +273,82 @@ class _PillsScreenState extends State<PillsScreen>
               SizedBox(
                 height: 10.0,
               ),
-              Text('Medicine form'),
+              Text(
+                'Medicine form',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w500),
+              ),
               SizedBox(
                 height: 10.0,
               ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: 60.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        capsule = !capsule;
+                        selectedType = 'Capsule';
+                      },
+                      child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: capsule
+                                    ? AssetImage(capsuleSelected)
+                                    : AssetImage(capsuleImage),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(30.0),
+                          )),
                     ),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          //add icon
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Text(
-                            'Capsule',
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
+                    SizedBox(
+                      width: 25.0,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        solution = !solution;
+                        selectedType = 'Solution';
+                      },
+                      child: Container(
+                        width: 100.0,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: solution
+                                  ? AssetImage(solutionSelected)
+                                  : AssetImage(solutionImage),
+                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 60.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
+                    SizedBox(
+                      width: 25.0,
                     ),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          //add icon
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Text(
-                            'Pill',
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: () {
+                        tablet = !tablet;
+                        selectedType = 'Tablet';
+                      },
+                      child: Container(
+                        width: 100.0,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: tablet
+                                  ? AssetImage(tabletSelected)
+                                  : AssetImage(tabletImage),
+                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    width: 160.0,
-                    height: 160.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          //add icon
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Text(
-                            'Solution',
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
               SizedBox(height: 10.0),
               Container(
