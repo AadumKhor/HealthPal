@@ -290,8 +290,10 @@ class _PillsScreenState extends State<PillsScreen>
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        capsule = !capsule;
-                        selectedType = 'Capsule';
+                        setState(() {
+                          capsule = !capsule;
+                          selectedType = 'Capsule';
+                        });
                       },
                       child: Container(
                           width: 100.0,
@@ -310,8 +312,10 @@ class _PillsScreenState extends State<PillsScreen>
                     ),
                     GestureDetector(
                       onTap: () {
-                        solution = !solution;
-                        selectedType = 'Solution';
+                        setState(() {
+                          solution = !solution;
+                          selectedType = 'Solution';
+                        });
                       },
                       child: Container(
                         width: 100.0,
@@ -331,8 +335,10 @@ class _PillsScreenState extends State<PillsScreen>
                     ),
                     GestureDetector(
                       onTap: () {
-                        tablet = !tablet;
-                        selectedType = 'Tablet';
+                        setState(() {
+                          tablet = !tablet;
+                          selectedType = 'Tablet';
+                        });
                       },
                       child: Container(
                         width: 100.0,
