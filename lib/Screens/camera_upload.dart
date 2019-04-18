@@ -102,9 +102,11 @@ class _CameraUploadState extends State<CameraUpload> {
                 // final StorageUploadTask task = firebaseStorageRef.putFile(file);
                 // Navigator.popAndPushNamed(context, '/camera_upload');
 
-                readText().then((value){
-                  isAnalyzed = true;
-                  value = description;
+                readText().then((value) {
+                  setState(() {
+                    isAnalyzed = true;
+                    value = description;
+                  });
                 });
               }),
           SizedBox(
@@ -122,7 +124,7 @@ class _CameraUploadState extends State<CameraUpload> {
                   child: Center(
                     child: Text(
                       description,
-                      style: TextStyle(color: Colors.black , fontSize: 20.0),
+                      style: TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
                   ),
                 )
