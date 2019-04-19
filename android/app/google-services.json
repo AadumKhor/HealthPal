@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "953741140751-4e6sktm7dl1epg6c95hqn2a1fooslq7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.healthpal",
+            "certificate_hash": "5c2903e0616ac36088e782ec815f20bcfc4be6f1"
+          }
+        },
+        {
           "client_id": "953741140751-1o14hqm6l2o1eeu02j347015edhjf1a8.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -3,6 +3,7 @@ import 'package:healthpal/Screens/add_pills.dart';
 import 'package:healthpal/Screens/camera_upload.dart';
 import 'package:healthpal/Screens/homescreen.dart';
 import 'package:healthpal/Screens/loader.dart';
+import 'package:healthpal/Screens/login.dart';
 import 'package:healthpal/Screens/pill_list_screen.dart';
 import 'package:healthpal/Screens/profile_screen.dart';
 import 'package:healthpal/Screens/success.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'HealthPal',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: CameraUpload(),
+      home: LoginPage(),
       routes: {
         '/user':(context) => ProfileScreen(),
         '/treat_his': (context) => Treatment(),
@@ -31,13 +32,14 @@ class MyApp extends StatelessWidget {
         '/addbf': (context) => Meal(),
         '/addlunch': (context) => Meal2(),
         '/adddin': (context) => Meal3(),
-        '/homescreen': (context) => HomeScreen(),
+        '/home': (context) => HomeScreen(),
         '/camera_upload':(context) => CameraUpload(),
         '/register': (context) => Register(),
         '/calorie': (context) => Calorie(),
         '/camera': (context) => CameraUpload(),
         '/loader':(context) => Loader(),
-        '/success':(context) =>Success()
+        '/success':(context) =>Success(),
+        '/login' : (context) => LoginPage()
       }
     );
   }
