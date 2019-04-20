@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:healthpal/BMI/gender_card.dart';
 import 'package:healthpal/screen_aware.dart';
 
 class DetailsPartOne extends StatelessWidget {
@@ -45,7 +46,7 @@ Widget _buildCards(BuildContext context) {
         Expanded(
           child: Column(
             children: <Widget>[
-              Expanded(child: _tempCard("Gender")),
+              Expanded(child: GenderCard()),
               Expanded(child: _tempCard("Weight")),
             ],
           ),
