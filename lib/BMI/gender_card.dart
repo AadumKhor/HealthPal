@@ -53,7 +53,7 @@ Widget _drawMainStack() {
 Widget _drawCircle() {
   return Stack(
     alignment: Alignment.center,
-    children: <Widget>[GenderCircle()],
+    children: <Widget>[GenderCircle() , GenderArrow()],
   );
 }
 
@@ -144,5 +144,32 @@ class GenderIcons extends StatelessWidget {
       child: rotatedIconWithALine,
     );
     return centeredIconWithALine;
+  }
+}
+class GenderArrow extends StatelessWidget {
+  final double angle;
+
+  const GenderArrow({Key key, this.angle}) : super(key: key);
+
+  double _arrowLength(BuildContext context) => screenAwareSize(32.0, context);
+
+  double _translationOffset(BuildContext context) => _arrowLength(context) * -0.4;
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.rotate(
+      angle: angle,
+      child: Transform.translate(
+        offset: Offset(0.0, _translationOffset(context)),
+        child: Transform.rotate(
+          angle: -_defaultAngle,
+          child: Image.asset(
+            "",
+            height: _arrowLength(context),
+            width: _arrowLength(context),
+          ),
+        ),
+      ),
+    );
   }
 }
