@@ -14,7 +14,28 @@ class GenderCard extends StatefulWidget {
   _GenderCardState createState() => _GenderCardState();
 }
 
-class _GenderCardState extends State<GenderCard> {
+class _GenderCardState extends State<GenderCard>
+    with SingleTickerProviderStateMixin {
+  Gender selectedGender;
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    selectedGender = widget.initialGender ?? Gender.other;
+    _controller = new AnimationController(
+        lowerBound: -_defaultAngle,
+        upperBound: _defaultAngle,
+        vsync: this,
+        value: _genderAngle[selectedGender]);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -36,26 +57,51 @@ class _GenderCardState extends State<GenderCard> {
       ),
     );
   }
-}
 
-Widget _drawMainStack() {
+  Widget _drawMainStack() {
+    return Container(
+      width: double.infinity,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          _drawCircle(),
+          GenderIcons(
+            gender: Gender.female,
+          ),
+          GenderIcons(
+            gender: Gender.other,
+          ),
+          GenderIcons(
+            gender: Gender.male,
+          ),
+          _drawGestureDetector()
+        ],
+      ),
+    );
+  }
+  Widget _drawCircle() {
   return Stack(
     alignment: Alignment.center,
-    children: <Widget>[
-      _drawCircle(),
-      GenderIcons(gender: Gender.female,),
-      GenderIcons(gender: Gender.other,),
-      GenderIcons(gender: Gender.male,)
-    ],
+    children: <Widget>[GenderCircle(), GenderArrow(listenable : _controller)],
   );
 }
 
-Widget _drawCircle() {
-  return Stack(
-    alignment: Alignment.center,
-    children: <Widget>[GenderCircle() , GenderArrow()],
-  );
+  _drawGestureDetector() {
+    return Positioned.fill(
+      child: TapHandler(
+        onGenderTapped: (gender) => setState((){
+          selectedGender = gender;
+          _controller.animateTo(
+            _genderAngle[gender],
+            duration: Duration(milliseconds: 500)
+          );
+        }),
+      ),
+    );
+  }
 }
+
+
 
 class GenderCircle extends StatelessWidget {
   @override
@@ -75,6 +121,7 @@ const Map<Gender, double> _genderAngle = {
   Gender.male: _defaultAngle,
   Gender.other: 0.0
 };
+
 // * when the gender is not seleceted we show a line
 class GenderLine extends StatelessWidget {
   @override
@@ -92,6 +139,7 @@ class GenderLine extends StatelessWidget {
     );
   }
 }
+
 // * gender icons to be shown for the user to choose from
 class GenderIcons extends StatelessWidget {
   static const Map<Gender, String> _genderImages = {
@@ -123,7 +171,7 @@ class GenderIcons extends StatelessWidget {
     );
 
     Widget iconWithALine = Padding(
-      padding: EdgeInsets.only(bottom: screenAwareSize(80.0,context) / 2),
+      padding: EdgeInsets.only(bottom: screenAwareSize(80.0, context) / 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -140,20 +188,23 @@ class GenderIcons extends StatelessWidget {
     );
 
     Widget centeredIconWithALine = Padding(
-      padding: EdgeInsets.only(bottom: screenAwareSize(80.0,context) / 2),
+      padding: EdgeInsets.only(bottom: screenAwareSize(80.0, context) / 2),
       child: rotatedIconWithALine,
     );
     return centeredIconWithALine;
   }
 }
+
 class GenderArrow extends StatelessWidget {
   final double angle;
+  final Listenable listenable;
 
-  const GenderArrow({Key key, this.angle}) : super(key: key);
+  const GenderArrow({Key key, this.angle , this.listenable}) : super(key: key);
 
   double _arrowLength(BuildContext context) => screenAwareSize(32.0, context);
 
-  double _translationOffset(BuildContext context) => _arrowLength(context) * -0.4;
+  double _translationOffset(BuildContext context) =>
+      _arrowLength(context) * -0.4;
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +221,27 @@ class GenderArrow extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TapHandler extends StatelessWidget {
+  final Function(Gender) onGenderTapped;
+
+  const TapHandler({Key key, this.onGenderTapped}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Expanded(
+            child: GestureDetector(onTap: () => onGenderTapped(Gender.female))),
+        Expanded(
+            child: GestureDetector(onTap: () => onGenderTapped(Gender.other))),
+        Expanded(
+            child: GestureDetector(onTap: () => onGenderTapped(Gender.male))),
+      ],
     );
   }
 }
