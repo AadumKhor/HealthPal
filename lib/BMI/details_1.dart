@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:healthpal/BMI/gender_card.dart';
+import 'package:healthpal/BMI/weight_cards.dart';
 import 'package:healthpal/screen_aware.dart';
+
+const TextStyle _titleStyle = TextStyle(
+  fontSize: 16.0,
+  fontWeight: FontWeight.w500,
+  color: Color.fromRGBO(14, 24, 35, 1.0),
+);
+
+const TextStyle _subtitleStyle = TextStyle(
+  fontSize: 8.0,
+  fontWeight: FontWeight.w500,
+  color: Color.fromRGBO(78, 102, 114, 1.0),
+);
 
 class DetailsPartOne extends StatelessWidget {
   @override
@@ -23,6 +36,7 @@ class DetailsPartOne extends StatelessWidget {
     );
   }
 }
+
 // * has the swtich which will be animated later on to transition
 // * to the next screen
 Widget _buildBottom(BuildContext context) {
@@ -33,6 +47,7 @@ Widget _buildBottom(BuildContext context) {
     child: Switch(value: true, onChanged: (val) {}),
   );
 }
+
 // * checking the layout of the cards on screen
 Widget _buildCards(BuildContext context) {
   return Padding(
@@ -47,7 +62,7 @@ Widget _buildCards(BuildContext context) {
           child: Column(
             children: <Widget>[
               Expanded(child: GenderCard()),
-              Expanded(child: _tempCard("Weight")),
+              Expanded(child: WeightCard()),
             ],
           ),
         ),
@@ -56,6 +71,7 @@ Widget _buildCards(BuildContext context) {
     ),
   );
 }
+
 // ? just for the time being to check the layout
 Widget _tempCard(String label) {
   return Card(
@@ -66,6 +82,7 @@ Widget _tempCard(String label) {
     ),
   );
 }
+
 // * the actual screen of the app with it's fucntionality as its title
 Widget _buildTitle(BuildContext context) {
   return Padding(
@@ -79,15 +96,26 @@ Widget _buildTitle(BuildContext context) {
     ),
   );
 }
-// * since we need to use the title again and again for each part. 
+
+// * since we need to use the title again and again for each part.
 class CardTitle extends StatelessWidget {
   final String title;
+  final String subtitle;
 
-  const CardTitle({this.title, Key key}) : super(key: key);
+  const CardTitle({this.title, Key key , this.subtitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(title,
-        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24.0));
+    return RichText(
+      text:TextSpan(
+        text: title,
+        style: _titleStyle,
+        children: <TextSpan>[
+          TextSpan(
+            text: subtitle ?? "",
+            style: _subtitleStyle
+          )
+        ]
+      ));
   }
 }

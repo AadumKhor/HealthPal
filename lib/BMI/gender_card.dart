@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthpal/screen_aware.dart';
 import 'details_1.dart';
 import 'dart:math' as math;
+import 'package:flutter_svg/svg.dart';
 
 enum Gender { male, female, other }
 
@@ -82,7 +83,7 @@ class _GenderCardState extends State<GenderCard>
   Widget _drawCircle() {
   return Stack(
     alignment: Alignment.center,
-    children: <Widget>[GenderCircle(), GenderArrow(listenable : _controller)],
+    children: <Widget>[GenderCircle(), GenderArrow(angle: _genderAngle[Gender.other],listenable : _controller)],
   );
 }
 
@@ -100,8 +101,6 @@ class _GenderCardState extends State<GenderCard>
     );
   }
 }
-
-
 
 class GenderCircle extends StatelessWidget {
   @override
