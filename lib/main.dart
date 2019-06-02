@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'HealthPal',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'Montserrat'),
-        home: DetailsPartOne(),
+        home: HomeScreen(),
         routes: {
           '/user': (context) => ProfileScreen(),
           '/treat_his': (context) => Treatment(),

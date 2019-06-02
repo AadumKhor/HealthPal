@@ -110,7 +110,7 @@ class WeightSlider extends StatelessWidget {
 
           return isExtra
               ? new Container()
-              : Center(
+              : FittedBox(
                   child: Text(
                     value.toString(),
                     style: _getTextStyle(value),
